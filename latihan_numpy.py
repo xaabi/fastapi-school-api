@@ -1,18 +1,26 @@
 import numpy as np
 
-# 1. Membuat Array 1 Dimensi (Vektor)
-data_nilai = np.array([70, 85, 90, 65, 100])
-print("Array Nilai:", data_nilai)
+# 1. Bikin Matriks 2D (3 Siswa x 2 Mata Pelajaran: [Matematika, Bahasa])
+# Baris 1: Siswa A (Nilai 80, 90)
+# Baris 2: Siswa B (Nilai 70, 85)
+# Baris 3: Siswa C (Nilai 60, 75)
+nilai_siswa = np.array([
+    [80, 90],
+    [70, 85],
+    [60, 75]
+])
 
-# 2. Operasi Matematika Langsung (Bonus nilai 5 poin ke semua siswa)
-nilai_plus = data_nilai + 5
-print("Nilai Setelah Bonus (+5):", nilai_plus)
+print("--- Matriks Nilai Siswa (3x2) ---")
+print(nilai_siswa)
 
-# 3. Statistik Dasar (Khas Pemrosesan Data AI)
-print("Nilai Rata-rata:", np.mean(data_nilai))
-print("Nilai Tertinggi:", np.max(data_nilai))
-print("Nilai Terendah :", np.min(data_nilai))
+# 2. Cek Bentuk Matriks (Shape)
+print("\nUkuran Matriks (Baris, Kolom):", nilai_siswa.shape)
 
-# 4. Filter Data (Ambil yang nilainya di atas 75)
-lulus = data_nilai[data_nilai > 75]
-print("Nilai yang Lulus (>75):", lulus)
+# 3. Slicing/Mengambil Data Spesifik
+# Ambil nilai Matematika saja (Kolom pertama / indeks 0 untuk semua baris)
+nilai_mtk = nilai_siswa[:, 0]
+print("Nilai Matematika Semua Siswa:", nilai_mtk)
+
+# 4. Rata-rata Nilai per Mata Pelajaran (Axis 0 = Vertikal / Kolom)
+rata_per_matpel = np.mean(nilai_siswa, axis=0)
+print("Rata-rata [Matematika, Bahasa]:", rata_per_matpel)
