@@ -1,26 +1,23 @@
 import numpy as np
 
-# 1. Bikin Matriks 2D (3 Siswa x 2 Mata Pelajaran: [Matematika, Bahasa])
-# Baris 1: Siswa A (Nilai 80, 90)
-# Baris 2: Siswa B (Nilai 70, 85)
-# Baris 3: Siswa C (Nilai 60, 75)
-nilai_siswa = np.array([
-    [80, 90],
-    [70, 85],
-    [60, 75]
-])
+# Set Seed supaya angka acaknya konsisten setiap kali di-run
+np.random.seed(42)
 
-print("--- Matriks Nilai Siswa (3x2) ---")
-print(nilai_siswa)
+# 1. Bikin Data Acak 100 Nilai Ujian Siswa (Rentang 50 - 100)
+nilai_ujian = np.random.randint(50, 101, size=100)
+print("--- 10 Nilai Siswa Pertama dari Total 100 ---")
+print(nilai_ujian[:10])
 
-# 2. Cek Bentuk Matriks (Shape)
-print("\nUkuran Matriks (Baris, Kolom):", nilai_siswa.shape)
+# 2. Analisis Statistik Data (Penting untuk Preprocessing Data AI)
+print("\n--- Analisis Statistik Data ---")
+print("Rata-rata (Mean)      :", np.mean(nilai_ujian))
+print("Standar Deviasi (Std) :", np.std(nilai_ujian))
 
-# 3. Slicing/Mengambil Data Spesifik
-# Ambil nilai Matematika saja (Kolom pertama / indeks 0 untuk semua baris)
-nilai_mtk = nilai_siswa[:, 0]
-print("Nilai Matematika Semua Siswa:", nilai_mtk)
+# 3. Normalisasi Data (Skala 0 sampai 1) -> Trik Wajib AI Engineer!
+# Rumus Min-Max Scaling: (x - min) / (max - min)
+nilai_min = np.min(nilai_ujian)
+nilai_max = np.max(nilai_ujian)
+nilai_normal = (nilai_ujian - nilai_min) / (nilai_max - nilai_min)
 
-# 4. Rata-rata Nilai per Mata Pelajaran (Axis 0 = Vertikal / Kolom)
-rata_per_matpel = np.mean(nilai_siswa, axis=0)
-print("Rata-rata [Matematika, Bahasa]:", rata_per_matpel)
+print("\n--- 5 Data Pertama Setelah Di-normalisasi (Skala 0 - 1) ---")
+print(np.round(nilai_normal[:5], 3))
